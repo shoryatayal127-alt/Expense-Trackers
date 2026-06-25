@@ -6,6 +6,9 @@
     <title>Expense Tracker</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -14,93 +17,71 @@
 
     <h1>Expense Tracker</h1>
 
-    <!-- Balance Section -->
+    <button id="toggle-dark">🌙 Dark Mode</button>
+
     <div class="balance-box">
         <h3>Your Balance</h3>
         <h2 id="balance">₹0</h2>
     </div>
 
-
-    <!-- Income Expense Cards -->
     <div class="summary">
-
         <div class="card income">
             <h3>Income</h3>
             <p id="income">₹0</p>
         </div>
 
-
         <div class="card expense">
             <h3>Expense</h3>
             <p id="expense">₹0</p>
         </div>
-
     </div>
 
-
-    <!-- Add Transaction -->
+    <h2>Overview</h2>
+    <canvas id="chart"></canvas>
 
     <h2>Add Transaction</h2>
 
     <form id="transaction-form">
 
-        <input 
-        type="text" 
-        id="title"
-        placeholder="Enter title"
-        required>
+        <input type="text" id="title" placeholder="Enter title" required>
 
+        <input type="number" id="amount" placeholder="Enter amount" required>
 
-        <input 
-        type="number"
-        id="amount"
-        placeholder="Enter amount"
-        required>
+        
 
+         <select id="type">
 
-        <select id="type">
+    <option value="income">Income</option>
 
-            <option value="income">
-                Income
-            </option>
+    <option value="expense">Expense</option>
 
-            <option value="expense">
-                Expense
-            </option>
+    <option value="food">Food</option>
+    <option value="travel">Travel</option>
+    <option value="shopping">Shopping</option>
 
-        </select>
-
-
-        <button>
-            Add Transaction
-        </button>
+</select>
+        <button>Add Transaction</button>
 
     </form>
 
+    <!-- Search + Filter -->
+    <input type="text" id="search" placeholder="Search transaction...">
 
-    <!-- History -->
-     <!-- Search & Filter -->
-<input 
-    type="text" 
-    id="search"
-    placeholder="Search transaction...">
-
-<select id="filter">
-    <option value="all">All</option>
-    <option value="income">Income</option>
-    <option value="expense">Expense</option>
-</select>
+    <select id="filter">
+        <option value="all">All</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+    </select>
 
     <h2>History</h2>
-
-    <ul id="transaction-list">
-
-    </ul>
-    
-
+    <ul id="transaction-list"></ul>
+    <hr>
+    <h2>Monthly Analytics</h2>
+    <canvas id="monthlyChart"></canvas>
 
 </div>
-
+<button id="exportPDF">📄 Download PDF Report</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
 
 </body>
